@@ -5,7 +5,18 @@ const db = require('./config/keys').mongoURI;
 
 // Connect to mongoDB
 
-mongoose.connect(db);
+mongoose
+    .connect(db)
+    .then((() => {
+        console.log('------------------------------------');
+        console.log('connection to mongoDB is done successfully');
+        console.log('------------------------------------');
+    }))
+    .catch(err => {
+        console.log('------------------------------------');
+        console.log(err);
+        console.log('------------------------------------');
+    })
 
 const app = express();
 
