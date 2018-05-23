@@ -1,6 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const users = require('./routes/api/users').default;
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
+
 // db Config from 
 const db = require('./config/keys').mongoURI;
 
@@ -17,9 +21,18 @@ mongoose
         console.log('------------------------------------');
         console.log(err);
         console.log('------------------------------------');
-    })
+    });
 
 const app = express();
+
+// Use Routes 
+
+app.use('/api/users', users)
+
+
+
+app.us('/api/profile', profile);
+app.use('/api/posts', posts);
 
 app.get('/', (req, res) => res.send('Hello hari!!'));
 
